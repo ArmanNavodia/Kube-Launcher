@@ -1,6 +1,6 @@
 module "eks" {
-  source  = "terraform-aws-modules/eks/aws"
-depends_on = [ module.vpc ]
+  source          = "terraform-aws-modules/eks/aws"
+  depends_on      = [module.vpc]
   cluster_name    = "eks-cluster"
   cluster_version = "1.31"
 
@@ -12,23 +12,50 @@ depends_on = [ module.vpc ]
     vpc-cni                = {}
   }
 
+  enable_cluster_creator_admin_permissions = true
+  cluster_endpoint_public_access           = true
+  cluster_endpoint_private_access          = false
+  access_entries = {
+    root-user = {
+      principal_arn       = "arn:aws:iam::905418225755:user/Arman"
+      policy_associations = [
+      {
+        policy_arn = "arn:aws:iam::aws:policy/AmazonEKSAdminPolicy"
+        access_scope = {
+          type = "Cluster"
+        }         
+      },
+      {
+        policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterAdminPolicy"
+        access_scope = {
+          type = "Cluster"
+        }
+      },
+      {
+        policy_arn = "arn:aws:iam::aws:policy/AmazonEKSEditPolicy"
+        access_scope = {
+          type = "Cluster"
+        }
+      },
 
-  vpc_id     = module.vpc.vpc_id
-  subnet_ids = module.vpc.public_subnets
-  create_kms_key = false
+    ]
+    }
+  }
+  vpc_id                           = module.vpc.vpc_id
+  subnet_ids                       = module.vpc.public_subnets
+  create_kms_key                   = false
   attach_cluster_encryption_policy = false
-  enable_kms_key_rotation=false
-  kms_key_enable_default_policy=false
-cluster_encryption_config = []
+  enable_kms_key_rotation          = false
+  kms_key_enable_default_policy    = false
+  cluster_encryption_config        = []
   eks_managed_node_groups = {
     example = {
-      # Starting on 1.30, AL2023 is the default AMI type for EKS managed node groups
       ami_type       = "AL2_x86_64"
       instance_types = ["t2.micro"]
 
-      min_size = 1
-      max_size = 2
-      desired_size = 1
+      min_size     = 1
+      max_size     = 3
+      desired_size = 3
     }
   }
 }
