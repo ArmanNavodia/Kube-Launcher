@@ -15,32 +15,7 @@ module "eks" {
   enable_cluster_creator_admin_permissions = true
   cluster_endpoint_public_access           = true
   cluster_endpoint_private_access          = false
-  access_entries = {
-    root-user = {
-      principal_arn       = "arn:aws:iam::905418225755:user/Arman"
-      policy_associations = [
-      {
-        policy_arn = "arn:aws:iam::aws:policy/AmazonEKSAdminPolicy"
-        access_scope = {
-          type = "Cluster"
-        }         
-      },
-      {
-        policy_arn = "arn:aws:iam::aws:policy/AmazonEKSClusterAdminPolicy"
-        access_scope = {
-          type = "Cluster"
-        }
-      },
-      {
-        policy_arn = "arn:aws:iam::aws:policy/AmazonEKSEditPolicy"
-        access_scope = {
-          type = "Cluster"
-        }
-      },
 
-    ]
-    }
-  }
   vpc_id                           = module.vpc.vpc_id
   subnet_ids                       = module.vpc.public_subnets
   create_kms_key                   = false
