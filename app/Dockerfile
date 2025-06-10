@@ -8,4 +8,4 @@ COPY . .
 
 EXPOSE 5000
 
-CMD ["Flask", "run"]
+CMD ["python", "app.py"]
