@@ -8,7 +8,7 @@ resource "kubernetes_service" "flask-service" {
     }
     port {
       port        = 80
-      target_port = 80
+      target_port = 5000
     }
 
     type = "LoadBalancer"

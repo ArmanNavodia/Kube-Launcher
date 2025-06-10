@@ -1,4 +1,5 @@
-infra/.terraform
+.terraform
 .terraform*
-infra/terraform.tfstate*
+terraform.tfstate*
 *.tfvars
+/k8s/terraform*
