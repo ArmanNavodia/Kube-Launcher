@@ -1,0 +1,8 @@
+grafana:
+  adminPassword: "mysecurepassword"
+  service:
+    type: LoadBalancer
+
+prometheus:
+  service:
+    type: LoadBalancer
