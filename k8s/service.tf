@@ -11,6 +11,6 @@ resource "kubernetes_service" "flask-service" {
       target_port = 5000
     }
 
-    type = "LoadBalancer"
+    type = "clusterIP"
   }
 }

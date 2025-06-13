@@ -1,8 +1,10 @@
 grafana:
   adminPassword: "mysecurepassword"
   service:
-    type: LoadBalancer
+    name: "grafana-service"
+    type: ClusterIP
 
 prometheus:
   service:
-    type: LoadBalancer
+    name: "prometheus-service"
+    type: ClusterIP
