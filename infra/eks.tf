@@ -26,11 +26,11 @@ module "eks" {
   eks_managed_node_groups = {
     example = {
       ami_type       = "AL2_x86_64"
-      instance_types = ["t2.micro"]
+      instance_types = ["t2.medium"]
 
       min_size     = 1
-      max_size     = 3
-      desired_size = 3
+      max_size     = 1
+      desired_size = 1
     }
   }
 }

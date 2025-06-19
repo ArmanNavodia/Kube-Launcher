@@ -10,7 +10,6 @@ resource "kubernetes_ingress_v1" "app_ingress" {
   spec {
     ingress_class_name = "nginx"
     rule {
-      host = "app.local"
       http {
         path {
           path     = "/"

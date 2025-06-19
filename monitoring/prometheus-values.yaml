@@ -1,5 +1,4 @@
 grafana:
-  adminPassword: "mysecurepassword"
   service:
     name: "grafana-service"
     type: ClusterIP
